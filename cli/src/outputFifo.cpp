@@ -73,13 +73,16 @@ void OutputFifo::printEventData(const trikSound::AudioEvent& event)
         int angle = mAngles[med];
 
         mOut << angle << delim;
+        mOut << endl;
     }
 
     if (mShowVad) {
         threshold_type thrsd = mEnrg / mFrameCnt;
-        mOut << thrsd << delim;
+        if (thrsd > 0) {
+            mOut << thrsd << delim;
+            mOut << endl;
+        }
     }
-    mOut << endl;
 
     mAngles.clear();
     mEnrg = 0;
